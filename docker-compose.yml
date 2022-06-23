@@ -1,0 +1,40 @@
+version: '3.9'
+services:
+  frontend:
+    build: ./frontend
+    plataform: linux/x86_64
+    container_name: app_frontend
+    ports:
+    - 3000:3000
+    depends_on:
+      - backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3000"]
+      timeout: 10s
+      retries: 5
+
+  backend:
+    build: ./backend
+    container_name: app_backend
+    ports:
+    - 3001:3001
+    plataform: linux/x86_64
+    restart: 'always'
+    command: npm run dev
+    volumes:
+    - './backend/src:/app'
+    depends_on:
+      mysql:
+        condition: service_healthy
+      mongosb:
+        condition: service_healthy
+    environment:
+      - PORTMYSQL=3001
+      - DB_USER=root
+      - DB_PASS=123456
+      - DB_HOST=db
+      - DB_NAME=TRACE_TRACK_USER
+      - DB_PORT=3306
+      - MONGODB_NAME=TRACE_TRACK
+      - MONGODB_USER=root
