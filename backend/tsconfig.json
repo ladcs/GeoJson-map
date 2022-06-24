@@ -23,5 +23,5 @@
     }
   },
   "include": ["src/**/*", "custom_typings"],
-  "exclude": ["src/tests"]
+  "exclude": ["src/tests", "node_modules"]
 }
