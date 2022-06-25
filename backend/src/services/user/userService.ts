@@ -13,15 +13,15 @@ export default class LoginService {
     this._token = new Token();
   }
 
-  public async login(email: string, Password: string):Promise<ILogin> {
-    LoginError.dadaOkay(email, Password);
+  public async login(email: string, password: string):Promise<ILogin> {
+    LoginError.dadaOkay(email, password);
 
     const userFound = await User.findOne({ where: { email } });
 
     if (!userFound) throw new Unauthorized('Incorrect email or password');
 
     const { passwordHash, userName, id } = userFound;
-    const isPasswordValid = await this._passCrypt.checkPassword(Password, passwordHash);
+    const isPasswordValid = await this._passCrypt.checkPassword(password, passwordHash);
 
     if (!isPasswordValid) throw new Unauthorized('Incorrect email or password');
 
