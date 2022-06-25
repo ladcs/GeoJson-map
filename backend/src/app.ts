@@ -1,5 +1,8 @@
 import express from 'express';
 
+import routes from './routes';
+import ErrorMiddleware from './middleware/Error';
+
 class App {
   public app: express.Express;
 
@@ -10,6 +13,10 @@ class App {
 
   private config():void {
     this.app.use(express.json());
+
+    this.app.use(routes);
+
+    this.app.use(ErrorMiddleware);
   }
 
   public start(PORT: string | number):void {
@@ -18,3 +25,5 @@ class App {
 }
 
 export { App };
+
+export const { app } = new App();
