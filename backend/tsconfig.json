@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "types": [
+      "jest",
+      "node"
+    ],
+    "esModuleInterop": true,
     "target": "es2019",
     "module": "commonjs",
     "sourceMap": true,                     
@@ -22,6 +27,6 @@
       "*": ["node_modules/*"]
     }
   },
-  "include": ["src/**/*", "custom_typings"],
-  "exclude": ["src/tests", "node_modules"]
+  "include": ["src/**/*", "custom_typings", "**/*.test.ts"],
+  "exclude": ["node_modules"]
 }
