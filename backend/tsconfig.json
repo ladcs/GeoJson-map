@@ -27,6 +27,6 @@
       "*": ["node_modules/*"]
     }
   },
-  "include": ["src/**/*", "custom_typings", "**/*.test.ts"],
+  "include": ["src/**/*", "custom_typings", "**/*.test.ts", "app.ts"],
   "exclude": ["node_modules"]
 }
