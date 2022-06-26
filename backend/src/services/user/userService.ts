@@ -5,6 +5,7 @@ import ILogin from './ILogin';
 import Token from '../../utils/Token';
 import LoginError from './LoginErrors';
 import INewUser from './INewUser';
+import registerSchema from './RegisterError';
 
 export default class LoginService {
   private _passCrypt: PassCrypt;
@@ -32,6 +33,8 @@ export default class LoginService {
   }
 
   public async register(body:INewUser):Promise<ILogin> {
+    registerSchema(body);
+
     const { email, password, userName } = body
     const passwordHash = await this._passCrypt.crypto(password);
 

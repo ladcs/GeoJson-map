@@ -4,6 +4,39 @@ const newMockUser = {
   password: '123456'
 }
 
+const newMockUserWithoutUserName = {
+  email: 'newtestuser@teste.com',
+  password: '123456'
+}
+
+const newMockUserWithoutPassword = {
+  userName: 'new test user',
+  email: 'newtestuser@teste.com',
+}
+
+const newMockUserWithoutEmail = {
+  userName: 'new test user',
+  password: '123456'
+}
+
+const newMockUserInvalidUser = {
+  userName: 123,
+  email: 'newtestuser@teste.com',
+  password: '123456'
+}
+
+const newMockUserInvalidEmail = {
+  userName: 'new test user',
+  email: 'newtestuser',
+  password: '123456'
+}
+
+const newMockUserInvalidPasswor = {
+  userName: 'new test user',
+  email: 'newtestuser',
+  password: 123
+}
+
 const newUserReturn = {
   userName: 'new test user',
   email: 'newtestuser@teste.com',
@@ -11,4 +44,12 @@ const newUserReturn = {
   id: 1,
 }
 
-export { newMockUser, newUserReturn }
+export {
+  newMockUser,
+  newUserReturn,
+  newMockUserInvalidPasswor,
+  newMockUserInvalidEmail,
+  newMockUserInvalidUser,
+  newMockUserWithoutEmail,
+  newMockUserWithoutPassword,
+  newMockUserWithoutUserName }
