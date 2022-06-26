@@ -8,5 +8,6 @@ const controller = new Login();
 const app = Router();
 
 app.post(ROUTE, controller.login);
+app.post(`${ROUTE}/register`, controller.createNewUser);
 
 export default app;

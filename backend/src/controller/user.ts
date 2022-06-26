@@ -19,4 +19,14 @@ export default class Login {
       next(err);
     }
   };
+
+  public createNewUser= async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const createdUser = await this.service.register(req.body);
+      res.status(StatusCodes.CREATED).json(createdUser);
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
 }

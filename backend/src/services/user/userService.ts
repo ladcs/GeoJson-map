@@ -4,6 +4,7 @@ import User from '../../database/models/user';
 import ILogin from './ILogin';
 import Token from '../../utils/Token';
 import LoginError from './LoginErrors';
+import INewUser from './INewUser';
 
 export default class LoginService {
   private _passCrypt: PassCrypt;
@@ -28,5 +29,15 @@ export default class LoginService {
     const token = this._token.create({ id, userName, email });
 
     return { userName, email, id , token };
+  }
+
+  public async register(body:INewUser):Promise<ILogin> {
+    const { email, password, userName } = body
+    const passwordHash = await this._passCrypt.crypto(password);
+
+    const userCreated = await User.create({ email, passwordHash, userName });
+
+    const token = this._token.create({ id: userCreated.id, userName, email });
+    return { userName, id: userCreated.id, email, token};
   }
 }
