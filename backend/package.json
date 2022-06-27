@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./build/server",
   "scripts": {
     "build": "/bin/sh tsc_eval.sh",
     "test": "mocha -r ts-node/register ./src/tests/*$NAME*.{test,spec}.ts -t 10000 --exit",
@@ -20,6 +20,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/mongoose": "^5.11.97",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
@@ -43,6 +44,7 @@
     "@types/node": "^18.0.0",
     "@types/sequelize": "^4.28.13",
     "@types/sinon": "10.0.11",
+    "@types/superagent": "^4.1.15",
     "@types/validator": "^13.7.3",
     "@typescript-eslint/eslint-plugin": "^5.29.0",
     "@typescript-eslint/parser": "^5.29.0",

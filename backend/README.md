@@ -27,4 +27,4 @@ The location is format GeoJson.
     patch/:id to GeoJson,
     delete/:id to GeoJson.
 
-This app is create with TDD, using chai and sinnon.
+Using chai and sinnon to test.
