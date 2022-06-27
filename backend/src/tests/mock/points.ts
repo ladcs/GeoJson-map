@@ -9,6 +9,13 @@ const inPoint = {
   }
 };
 
+const _id = { $oid: 'anyId' };
+
+
+const obj = { properties: {
+  name: 'sweet home'
+} }
+
 const inPointReturn = {
   ...inPoint,
   _id: {
@@ -49,4 +56,4 @@ const inPointCollectionReturn = {
   }
 }
 
-export { inPoint, inPointCollection, inPointReturn, inPointCollectionReturn }
+export { inPoint, inPointCollection, inPointReturn, inPointCollectionReturn, _id, obj }
