@@ -62,7 +62,7 @@ describe('route Login', () => {
       .request(app)
       .post(ROUTE)
       .send(newMockUserInvalidPasswor);
-    
+
     expect(chaiHttpResponse.status).to.be.equal(400);
   });
 });

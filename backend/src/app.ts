@@ -4,6 +4,7 @@ import { Mongoose } from 'mongoose';
 import routes from './routes';
 import ErrorMiddleware from './middleware/Error';
 import connection from './connectMongoose';
+import cors from 'cors';
 
 class App {
   public app: express.Express;
@@ -17,6 +18,8 @@ class App {
 
   private config():void {
     this.app.use(express.json());
+
+    this.app.use(cors())
 
     this.app.use(routes);
 

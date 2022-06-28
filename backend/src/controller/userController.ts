@@ -10,6 +10,7 @@ export default class Login {
 
   public login = async (req: Request, res: Response, next: NextFunction) => {
     try {
+      console.log('aqui');
       const { email, password } = req.body;
       const login = await this.service.login(email, password);
       req.headers.Authorization = login.token;

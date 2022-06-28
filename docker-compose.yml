@@ -18,7 +18,7 @@ services:
     build: ./backend
     container_name: app_backend
     ports:
-      - 3001:3001
+      - 3003:3003
     platform: linux/x86_64
     restart: 'always'
     command: npm run dev
@@ -30,7 +30,7 @@ services:
       mongo:
         condition: service_healthy
     environment:
-      - PORTMYSQL=3001
+      - PORTMYSQL=3002
       - DB_USER=root
       - DB_PASS=123456
       - DB_HOST=db
@@ -40,7 +40,7 @@ services:
       - MONGODB_USER=root
       - MONGODB_PASSWORD=123456
     healthcheck:
-      test: ["CMD", "lsof", "-t", "-i:3001"]
+      test: ["CMD", "lsof", "-t", "-i:3003"]
       timeout: 10s
       retries: 5
   mysql:
@@ -63,22 +63,10 @@ services:
     image: mongo
     restart: always
     ports:
-      - 3004:27017
+      - 3001:27017
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      timeout: 10s
-      retries: 5
-
-  mongo-express:
-    image: mongo-express
-    restart: always
-    ports:
-      - 8081:8081
-    environment:
-      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       timeout: 10s
