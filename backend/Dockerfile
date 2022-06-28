@@ -1,12 +1,14 @@
 FROM node:alpine
 
-WORKDIR /app
+WORKDIR /backend
 
-EXPOSE 3000
+EXPOSE 3001
 
 COPY package*.json ./
 
 RUN npm install
+
+EXPOSE 3003
 
 COPY . .
 

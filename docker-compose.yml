@@ -68,6 +68,6 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: echo 'db.runCommand("ping").ok' | mongo mongo:27017/test --quiet
       timeout: 10s
       retries: 5

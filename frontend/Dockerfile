@@ -1,8 +1,8 @@
 FROM node:alpine
 
-WORKDIR /app
+WORKDIR /frontend
 
-EXPOSE 3001
+EXPOSE 3000
 
 COPY package*.json ./
 

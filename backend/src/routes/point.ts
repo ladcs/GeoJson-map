@@ -9,9 +9,9 @@ const app = Router();
 
 app.get(ROUTE, controller.getPoints);
 app.get(`${ROUTE}/:id`, controller.getById);
-app.post(ROUTE, controller.getPoints);
-app.post(`${ROUTE}/:id`, controller.getById);
-app.patch(`${ROUTE}/:id`, controller.getById);
+app.post(ROUTE, controller.insertPoint);
+app.post('/points', controller.insertPoints);
+app.patch(`${ROUTE}/:id`, controller.updatePoint);
 app.delete(`${ROUTE}/delete/:id`, controller.deleteById);
 
 export default app;

@@ -12,7 +12,6 @@ async function handleOnClickToLogin(e, setLogged, setUser, userIn, setErrorLogin
   try {
     const { token, user } = await requestToLogin(userIn);
     setErrorLogin(false);
-    console.log('front');
     setUser({ password:'', email:'' })
     localStorage.setItem('user', JSON.stringify({ ...user }));
     api.defaults.headers.common.authorization = token;

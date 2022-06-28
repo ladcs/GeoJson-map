@@ -1,0 +1,19 @@
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  min-width: 300px;
+  min-height: 400px;
+}
+
+.flexbox {
+  display: flex;
+}
+
+
+.flexbox ul {
+  min-width: 174px;
+}
+
+.flexbox li button {
+  min-width: 174px;
+}

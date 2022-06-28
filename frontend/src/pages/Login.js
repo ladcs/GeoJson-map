@@ -14,7 +14,7 @@ function Login() {
   const navigate = useNavigate();
   useEffect(() => {
     if(logged) {
-      return navigate('/test')
+      return navigate('/map')
     }
   }, [logged]);
   const { email, password } = user;
