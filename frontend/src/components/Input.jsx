@@ -2,16 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Input(props) {
-  const { label, type, value, testId, id, onChange, className } = props;
+  const { label, type, value, id, onChange, className } = props;
   return (
     <label htmlFor={ id }>
       <span className="sr-only">
-        { label }
       </span>
       <input
         type={ type }
         value={ value }
-        data-testid={ testId }
         id={ id }
         onChange={ onChange }
         className={ className }

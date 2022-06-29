@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 
 function handleClickItsPoints(itsPoints, setItsPoints) {
   if (itsPoints === 'point') {
@@ -9,4 +10,8 @@ function handleClickItsPoints(itsPoints, setItsPoints) {
   }
 }
 
-export { handleClickItsPoints }
+function handleClickPosition() {
+  useNavigate('/point');
+}
+
+export { handleClickItsPoints, handleClickPosition }

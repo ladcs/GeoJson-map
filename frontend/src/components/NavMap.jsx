@@ -1,10 +1,17 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import MapContext from '../context/mapContext';
 import '../styles/default.css';
 import { handleClickItsPoints } from '../utils/navMap';
 
+function handleClickPosition(endpoint, navegate) {
+  navegate(endpoint);
+}
 const LabsOptions = () => {
-  const { itsPoints, setItsPoints,  } = useContext(MapContext);
+
+  const navegate = useNavigate();
+  
+  const { itsPoints, setItsPoints } = useContext(MapContext);
   return (
     <div className='centerOptions'>
       <ul>
@@ -17,7 +24,7 @@ const LabsOptions = () => {
         </li>
         <li>
           <button
-          onClick={() => handleClickItsPoints(itsPoints, setItsPoints) }
+          onClick={ ()=> handleClickPosition('/point', navegate) }
           >
             Cadastrar Posições
           </button>

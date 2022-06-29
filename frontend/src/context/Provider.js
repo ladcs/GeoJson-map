@@ -3,11 +3,17 @@ import PropTypes from 'prop-types';
 import MapContext from './mapContext';
 
 function Provider ({ children }) {
-  const [itsPoints, setItsPoints] = useState('point');
+  const [itsPoints, setItsPoints] = useState('both');
   const [logged, setLogged] = useState(false);
   const [itsMap, setItsMap] = useState('map');
+  const [points, setPoints] = useState([]);
+  const [collectionPoints, setCollectionPoints] = useState([])
 
   const contextValue = {
+    collectionPoints,
+    setCollectionPoints,
+    points,
+    setPoints,
     itsMap,
     setItsMap,
     itsPoints,
