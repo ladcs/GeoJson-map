@@ -22,7 +22,7 @@ function Input(props) {
 Input.propTypes = {
   label: PropTypes.string,
   type: PropTypes.string,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   testId: PropTypes.string,
   id: PropTypes.string,
   onChange: PropTypes.func.isRequired,

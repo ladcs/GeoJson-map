@@ -25,7 +25,7 @@ export function handleOnClickToAddPoint(geoJson, setGeoJson, points, setPoints) 
       features: [points, toTestPointOrCollection]
     }
     setPoints(toAPIPoint)
-  } if (!notExistFeaturesCollection) {
+  } else {
     const toAPIPoint = {
       type: 'featuresCollection',
       features: [...points.features, toTestPointOrCollection]

@@ -7,11 +7,17 @@ function Provider ({ children }) {
   const [logged, setLogged] = useState(false);
   const [itsMap, setItsMap] = useState('map');
   const [points, setPoints] = useState({});
-  const [collectionPoints, setCollectionPoints] = useState({})
-
+  const [polygon, setPolygon] = useState([]);
+  const [points2Polygon, setPoints2Polygon] = useState([]);
+  const [multiPolygonPoint, setMultPolygonPoint] = useState([]);
+  
   const contextValue = {
-    collectionPoints,
-    setCollectionPoints,
+    multiPolygonPoint,
+    setMultPolygonPoint,
+    points2Polygon,
+    setPoints2Polygon,
+    polygon,
+    setPolygon,
     points,
     setPoints,
     itsMap,

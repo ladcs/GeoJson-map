@@ -31,7 +31,7 @@ const LabsOptions = () => {
         </li>
         <li>
           <button
-          onClick={() => handleClickItsPoints(itsPoints, setItsPoints) }
+          onClick={() => handleClickPosition('/polygon', navegate) }
           >
             Cadastrar Polígonos
           </button>

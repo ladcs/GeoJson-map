@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import Input from '../components/Input';
 import { useNavigate } from 'react-router-dom';
 import MapContext from '../context/mapContext';
@@ -9,10 +9,14 @@ function Points() {
     name: '',
     coordenates: '',
   });
-
-  const { points, setPoints } = useContext(MapContext);
+  const { points, setPoints, logged } = useContext(MapContext);
 
   const navigate = useNavigate();
+  useEffect(() => {
+    if (!logged) navigate('/');
+  }, [logged]);
+
+
   const { name, coordenates } = geoJson;
 
   const toMap = () => {
@@ -67,7 +71,7 @@ function Points() {
       value="toMap"
       className="buttonLogin"
       >
-        Para o mapa
+        Para o mapa!
       </button>
     </ div>
   );

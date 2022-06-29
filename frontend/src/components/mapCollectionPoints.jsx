@@ -4,8 +4,6 @@ import MapContext from '../context/mapContext';
 
 function MapCollectionPoints() {
   const { points } = useContext(MapContext);
-  console.log(points);
-  console.log(Object.keys(points));
   return ( Object.keys(points).length === 0 ? null : (
     <div>
     { 

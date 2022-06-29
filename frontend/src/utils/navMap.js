@@ -1,5 +1,3 @@
-import { useNavigate } from 'react-router-dom';
-
 function handleClickItsPoints(itsPoints, setItsPoints) {
   if (itsPoints === 'point') {
     setItsPoints('polygon');
@@ -10,8 +8,4 @@ function handleClickItsPoints(itsPoints, setItsPoints) {
   }
 }
 
-function handleClickPosition() {
-  useNavigate('/point');
-}
-
-export { handleClickItsPoints, handleClickPosition }
+export { handleClickItsPoints }
