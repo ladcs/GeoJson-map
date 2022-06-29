@@ -6,6 +6,7 @@ import Token from '../../utils/Token';
 import LoginError from './LoginErrors';
 import INewUser from './INewUser';
 import registerSchema from './RegisterError';
+import BadRequest from '../../error/BadRequest';
 
 export default class LoginService {
   private _passCrypt: PassCrypt;
@@ -36,6 +37,8 @@ export default class LoginService {
     registerSchema(body);
 
     const { email, password, userName } = body
+    const userExist = User.findOne({ where: { email } })
+    if (userExist !== null) throw new BadRequest('user alredy exist');
     const passwordHash = await this._passCrypt.crypto(password);
 
     const userCreated = await User.create({ email, passwordHash, userName });

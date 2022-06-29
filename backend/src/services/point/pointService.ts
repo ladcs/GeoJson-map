@@ -1,41 +1,32 @@
-import ModelPoint from '../../model/FeaturePoint';
-import ModelPoints from '../../model/FeatureColletionPoints';
-import { IPoint, IPoints } from '../../schema/IGeoJson';
+import { AuxToPoint } from '../../utils/auxToPoint';
+import ModelPoint from '../../database/models/pointcollections'
+import { IPoint } from '../../schema/IGeoJson';
+import NotFound from '../../error/NotFound';
 
 export default class PointService {
-  private _modelPoint: ModelPoint;
-  private _modelPoints: ModelPoints;
+  private _auxToPoint: AuxToPoint;
 
-  constructor() {
-    this._modelPoint = new ModelPoint();
-    this._modelPoints = new ModelPoints();
+  constructor() { 
+    this._auxToPoint = new AuxToPoint();
   }
 
   public async insertPoint(featurePoint: IPoint) {
-    const inserted = await this._modelPoint.insertPoint(featurePoint);
-    return inserted;
-  }
-
-  public async insertCollectionPont(featureColletionPoint : IPoints) {
-    const inserted = await this._modelPoints.insertCollectionPoint(featureColletionPoint);
+    const { name, coordinates } = featurePoint;
+    const { longitude, latitude } = this._auxToPoint.coordinates(coordinates);
+    const inserted = await ModelPoint.create({ name, longitude, latitude });
     return inserted;
   }
 
   public async getPoints() {
-    return await this._modelPoint.getPoints();
-  }
-
-  public async updatePoint(id: string, point: Partial<IPoint>) {
-    await this._modelPoint.updatePoint(id, point);
-    const updated = this.getById(id);
-    return updated;
-  }
-
-  public async getById(id:string) {
-    return await this._modelPoint.getById(id);
-  }
-
-  public async deleteById(id:string) {
-    await this._modelPoint.deletePoint(id)
+    const points = await ModelPoint.findAll();
+    if (points.length > 1) {
+      const collectionPoints = this._auxToPoint.collectionPoints(points)
+      return collectionPoints;
+    }
+    if (points.length === 1) {
+      const point = this._auxToPoint.point(points);
+      return point;
+    }
+    throw new NotFound(`don't have point`);
   }
 }
