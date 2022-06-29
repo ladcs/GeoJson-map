@@ -38,7 +38,7 @@ export default class LoginService {
 
     const { email, password, userName } = body
     const userExist = User.findOne({ where: { email } })
-    if (userExist !== null) throw new BadRequest('user alredy exist');
+    if (!userExist) throw new BadRequest('user alredy exist');
     const passwordHash = await this._passCrypt.crypto(password);
 
     const userCreated = await User.create({ email, passwordHash, userName });

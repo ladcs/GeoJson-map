@@ -9,9 +9,13 @@ class PointCollection extends Model {
   }
 
   PointCollection.init({
-    id: DataTypes.NUMBER,
-    longitude: DataTypes.NUMBER,
-    latitude: DataTypes.NUMBER,
+    id:  {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+    longitude: DataTypes.INTEGER,
+    latitude: DataTypes.INTEGER,
     name: DataTypes.STRING
   }, {
     sequelize: db,

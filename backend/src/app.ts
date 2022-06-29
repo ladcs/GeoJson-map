@@ -1,19 +1,14 @@
 import express from 'express';
-import { Mongoose } from 'mongoose';
-
 import routes from './routes';
 import ErrorMiddleware from './middleware/Error';
-import connection from './connectMongoose';
 import cors from 'cors';
 
 class App {
   public app: express.Express;
-  public connect: Promise<Mongoose>;
 
   constructor() {
     this.app = express();
     this.config();
-    this.connect = connection();
   }
 
   private config():void {
