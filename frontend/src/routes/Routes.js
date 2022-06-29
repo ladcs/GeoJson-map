@@ -4,6 +4,7 @@ import Login from '../pages/Login';
 import Map from '../pages/Map';
 import Points from '../pages/Points'
 import Polygon from '../pages/Polygon';
+import Register from '../pages/register';
 
 function Rout() {
   return (
@@ -12,6 +13,7 @@ function Rout() {
       <Route exact path='/map' element={ <Map /> } />
       <Route exact path='/point' element={ <Points />} />
       <Route exact path='/polygon' element={ <Polygon />} />
+      <Route exact path='/register' element={ <Register />} />
     </Routes>
   )
 }

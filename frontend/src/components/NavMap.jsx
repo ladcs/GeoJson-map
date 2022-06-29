@@ -17,7 +17,7 @@ const LabsOptions = () => {
       <ul>
         <li>
           <button
-          onClick={() => handleClickItsPoints(itsPoints, setItsPoints) }
+          onClick={() => handleClickPosition('/register', navegate) }
           >
             Regitrar novo Usuário
           </button>

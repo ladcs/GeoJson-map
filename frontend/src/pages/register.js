@@ -1,24 +1,23 @@
 import React, { useState, useContext, useEffect } from 'react';
 import Input from '../components/Input';
 import MapContext from '../context/mapContext';
-import handleOnClickToLogin from '../utils/login';
 import { useNavigate } from 'react-router-dom';
+import handleOnClickToRegister from '../utils/register';
 
-function Login() {
+function Register() {
   const [user, setUser] = useState({
     email: '',
+    userName: '',
     password: '',
   });
-  const [userError, setUserError] = useState(false);
   const { setLogged, logged } = useContext(MapContext);
-  useEffect(()=> {console.log(logged)},[logged])
   const navigate = useNavigate();
   useEffect(() => {
     if(logged) {
       return navigate('/map')
     }
   }, [logged]);
-  const { email, password } = user;
+  const { email, userName, password } = user;
   const handleOnChange = ({ target }) => {
     const { id, value } = target;
     setUser({
@@ -27,50 +26,45 @@ function Login() {
     });
   };
 
-  const register = () => navigate('/register')
-
   return (
     <main className="d-flex flex-column justify-content-center align-items-center">
-      <h2>Login</h2>
+      <h2>Cadastro</h2>
       <form className="d-flex flex-column align-items-center login-form mt-4">
         <Input
           label="Email"
           type="text"
           value={ email }
-          testId="email-input"
           id="email"
           onChange={ handleOnChange }
           className="border-top border-right border-left p-2"
         />
+          <Input
+            label="Nome do Usuário"
+            type="text"
+            value={ userName }
+            id="userName"
+            onChange={ handleOnChange }
+            className="border-top border-right border-left p-2"
+          />
         <Input
           label="Senha"
           type="password"
           value={ password }
-          testId="password-input"
           id="password"
           onChange={ handleOnChange }
           className="border-top border-right border-left p-2"
         />
         <button
           type="button"
-          onClick={ (e) => handleOnClickToLogin(e, setLogged, setUser, user, setUserError) }
-          className="buttonLogin"
-          value="Login"
-        >
-          Login
-        </button>
-        <button
-          type="button"
-          onClick={ register }
+          onClick={(e) => handleOnClickToRegister(e, setLogged, setUser, user) }
           className="buttonLogin"
           value="register"
         >
           cadastrar-se
         </button>
-      { userError && <p>User ou Password inválido!</p>}
       </form>
     </main>
   );
 }
 
-export default Login;
+export default Register;
