@@ -1,9 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Marker, Popup } from 'react-leaflet';
+import api from '../services/api';
 import MapContext from '../context/mapContext';
 
 function MapCollectionPoints() {
-  const { points } = useContext(MapContext);
+  const { points, setPoints } = useContext(MapContext);
+  useEffect(() => {
+    api.get('/point').then(res => {
+      const { data } = res;
+      setPoints(data);
+    });
+  })
   return ( Object.keys(points).length === 0 ? null : (
     <div>
     { 
