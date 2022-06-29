@@ -11,7 +11,6 @@ function Login() {
   });
   const [userError, setUserError] = useState(false);
   const { setLogged, logged } = useContext(MapContext);
-  useEffect(()=> {console.log(logged)},[logged])
   const navigate = useNavigate();
   useEffect(() => {
     if(logged) {
