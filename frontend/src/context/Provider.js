@@ -6,8 +6,8 @@ function Provider ({ children }) {
   const [itsPoints, setItsPoints] = useState('both');
   const [logged, setLogged] = useState(false);
   const [itsMap, setItsMap] = useState('map');
-  const [points, setPoints] = useState([]);
-  const [collectionPoints, setCollectionPoints] = useState([])
+  const [points, setPoints] = useState({});
+  const [collectionPoints, setCollectionPoints] = useState({})
 
   const contextValue = {
     collectionPoints,

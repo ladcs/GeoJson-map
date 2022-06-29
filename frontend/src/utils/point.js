@@ -1,73 +1,41 @@
-import api from "../services/api";
-import React from "react";
+// import api from "../services/api";
 
-export function handleOnClickToAddPoint(navegate, geoJson, setGeoJson, points, setPoints) {
+export function handleOnClickToAddPoint(geoJson, setGeoJson, points, setPoints) {
   const { coordenates, name } = geoJson;
-  if (name === '' || coordenates === '') return <p>nome e ponto deve existir</p>
-  const arrayCoordenates = coordenates.split(',');
+  if (coordenates === '' || name === '') return;
+  const coordinates = coordenates.split(',').map(c => parseFloat(c));
   const geometry = {
     type: "Point",
-    coordinates: [parseFloat(arrayCoordenates[0]), parseFloat(arrayCoordenates[1])],
+    coordinates
   }
-  const toAPIGeoJson = {
+  const toTestPointOrCollection = {
     type: 'Feature',
     properties:{
       name
     },
     geometry,
   };
-  if (points.filter((point) => point
-    .geometry
-    .coordinates === geometry
-      .coordinates)
-      .lenght === 0) {
-    setPoints([...points, toAPIGeoJson]);
-    api
+
+  const notExistFeaturesCollection = !points.features;
+  if (Object.keys(points).length === 0) {
+    setPoints(toTestPointOrCollection);
+  } else if(notExistFeaturesCollection) {
+    const toAPIPoint = {
+      type: 'featuresCollection',
+      features: [points, toTestPointOrCollection]
+    }
+    setPoints(toAPIPoint)
+  } if (!notExistFeaturesCollection) {
+    const toAPIPoint = {
+      type: 'featuresCollection',
+      features: [...points.features, toTestPointOrCollection]
+    }
+    setPoints(toAPIPoint);
+  }
+  /*api
     .post('/point', toAPIGeoJson)
     .then(res => res.json())
     .then(console.log('point add'))
-    .catch(err => console.log(err));
-  }
+    .catch(err => console.log(err));*/
   setGeoJson({ name: '', coordenates: '' });
-  navegate('/map');
-}
-
-export function handleOnClickToAddPoints(
-navegate,
-geoJson,
-setGeoJson,
-collectionPoints,
-setCollectionPoints) {
-
-  const { manyCoordenates, names } = geoJson;
-  if (names === '' || manyCoordenates === '') return <p>deve ter pelo menos um ponto e um nome</p>
-  const arrayCoordenates = manyCoordenates.split(';');
-  const arrayNames = names.split('; ');
-
-  const arrayCoordenate = arrayCoordenates.map(coord => coord.split(',').map(c => parseFloat(c)));
-
-  const features = arrayNames.map((name, index) => ({
-    type: 'Feature',
-    properties: {
-      name
-    },
-    geometry: {
-      type: 'Point',
-      coordinates: arrayCoordenate[index],
-    }
-  }));
-
-  const toAPIGeoJson = {
-    type: 'FeatureCollection',
-    features,
-  };
-
-  setCollectionPoints([...collectionPoints, toAPIGeoJson]);
-    api
-    .post('/points', toAPIGeoJson)
-    .then(res => res.json())
-    .then(console.log('collection points add'))
-    .catch(err => console.log(err));
-  setGeoJson({ name: '', coordenates: '' });
-  navegate('/map');
 }
