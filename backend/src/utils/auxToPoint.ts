@@ -1,4 +1,4 @@
-import { IPoints } from '../schema/IGeoJson';
+import { IPoints } from '../schema/Point';
 
 export class AuxToPoint {
 

@@ -1,6 +1,6 @@
 import { AuxToPoint } from '../../utils/auxToPoint';
 import ModelPoint from '../../database/models/pointcollections'
-import { IPoint } from '../../schema/IGeoJson';
+import { IPoint } from '../../schema/Point';
 import NotFound from '../../error/NotFound';
 
 export default class PointService {
@@ -27,6 +27,6 @@ export default class PointService {
       const point = this._auxToPoint.point(points);
       return point;
     }
-    throw new NotFound(`don't have point`);
+    throw new NotFound(`haven't point`);
   }
 }
