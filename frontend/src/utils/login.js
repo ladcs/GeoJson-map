@@ -7,7 +7,7 @@ async function requestToLogin(body) {
   return data;
 }
 
-async function handleOnClickToLogin(e, setLogged, setUser, userIn, setErrorLogin) {
+async function handleOnClickToLogin(e, setLogged, setUser, userIn, setErrorLogin, setToMap, toMap) {
   e.preventDefault();
   try {
     const { token, user } = await requestToLogin(userIn);
@@ -16,6 +16,7 @@ async function handleOnClickToLogin(e, setLogged, setUser, userIn, setErrorLogin
     localStorage.setItem('user', JSON.stringify({ ...user }));
     api.defaults.headers.common.authorization = token;
     setLogged(true);
+    setToMap(!toMap);
   } catch (err) {
     setLogged(false);
     setErrorLogin(true);

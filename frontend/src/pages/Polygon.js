@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import MapContext from "../context/mapContext";
 import Input from "../components/Input";
@@ -14,22 +14,22 @@ function Polygon() {
     color: ''
   });
   const {
-    polygon,
-    setPolygon,
     points2Polygon,
     setPoints2Polygon,
     multiPolygonPoint,
-    setMultPolygonPoint/*, logged*/ } = useContext(MapContext);
+    setMultPolygonPoint,
+    logged,
+  } = useContext(MapContext);
 
   const navigate = useNavigate();
-/*  useEffect(() => {
+  useEffect(() => {
     if (!logged) navigate('/');
-  }, [logged]); */
+  }, [logged]);
 
 
   const { name, coordenates, color } = geoJson;
 
-  const toMap = () => {
+  const toMapPage = () => {
     navigate('/map');
   }
 
@@ -95,9 +95,8 @@ function Polygon() {
             onClick={ () => handleOnClickAddPolygon(
               geoJson,
               setGeoJson,
-              polygon,
-              setPolygon,
-              multiPolygonPoint) }
+              multiPolygonPoint,
+              points2Polygon) }
             className="buttonLogin"
             >
             Salvar polygon ou multiPolygon.
@@ -111,7 +110,7 @@ function Polygon() {
       <p> Será salvo algum Polygon desde que tenha sido apertado o botão { `"Adicionar próximo Polygon em um multiPolygon"` }! </p>
       <button 
       type="button"
-      onClick={ toMap }
+      onClick={ toMapPage }
       className="buttonLogin"
       >
         Para o mapa!

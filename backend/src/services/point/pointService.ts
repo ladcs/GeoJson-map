@@ -1,7 +1,7 @@
 import { AuxToPoint } from '../../utils/auxToPoint';
 import ModelPoint from '../../database/models/pointcollections'
 import { IPoint } from '../../schema/Point';
-import NotFound from '../../error/NotFound';
+import NoContent from '../../error/NoContent';
 
 export default class PointService {
   private _auxToPoint: AuxToPoint;
@@ -19,14 +19,14 @@ export default class PointService {
 
   public async getPoints() {
     const points = await ModelPoint.findAll();
-    if (points.length > 1) {
+    if(points.length > 1) {
       const collectionPoints = this._auxToPoint.collectionPoints(points)
       return collectionPoints;
     }
-    if (points.length === 1) {
+    if(points.length === 1) {
       const point = this._auxToPoint.point(points);
       return point;
     }
-    throw new NotFound(`haven't point`);
+    throw new NoContent('No Point')
   }
 }

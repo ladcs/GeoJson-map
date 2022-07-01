@@ -1,11 +1,11 @@
 import express from 'express';
+import cors from 'cors';
 import routes from './routes';
 import ErrorMiddleware from './middleware/Error';
-import cors from 'cors';
+import 'dotenv/config';
 
 class App {
   public app: express.Express;
-
   constructor() {
     this.app = express();
     this.config();
@@ -14,10 +14,10 @@ class App {
   private config():void {
     this.app.use(express.json());
 
-    this.app.use(cors())
-
+    this.app.use(cors());
+    
     this.app.use(routes);
-
+    
     this.app.use(ErrorMiddleware);
   }
 

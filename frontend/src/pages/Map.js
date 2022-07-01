@@ -23,16 +23,16 @@ function Map() {
       <CurrentLocation />
       {
       itsPoints === 'point' || itsPoints === 'both' &&
-      <div>
-      <MapCollectionPoints />
-      </div>
+        <div>
+          <MapCollectionPoints />
+        </div>
       }
       {
         itsPoints === 'polygon' || itsPoints === 'both' &&
         <div>
           <MapCollectionPolygon />
         </div>
-      }
+    }
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

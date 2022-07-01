@@ -10,7 +10,7 @@ function Login() {
     password: '',
   });
   const [userError, setUserError] = useState(false);
-  const { setLogged, logged } = useContext(MapContext);
+  const { setLogged, logged, toMap, setToMap } = useContext(MapContext);
   const navigate = useNavigate();
   useEffect(() => {
     if(logged) {
@@ -52,7 +52,7 @@ function Login() {
         />
         <button
           type="button"
-          onClick={ (e) => handleOnClickToLogin(e, setLogged, setUser, user, setUserError) }
+          onClick={ (e) => handleOnClickToLogin(e, setLogged, setUser, user, setUserError, setToMap, toMap) }
           className="buttonLogin"
           value="Login"
         >

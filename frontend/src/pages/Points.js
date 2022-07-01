@@ -19,7 +19,7 @@ function Points() {
 
   const { name, coordenates } = geoJson;
 
-  const toMap = () => {
+  const toMapPage = () => {
     navigate('/map');
   }
 
@@ -67,7 +67,7 @@ function Points() {
       <p> como exemplo: 51.505, -0.09</p>
       <button 
       type="button"
-      onClick={ toMap }
+      onClick={ toMapPage }
       value="toMap"
       className="buttonLogin"
       >

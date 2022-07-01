@@ -8,9 +8,10 @@ function MapCollectionPoints() {
   useEffect(() => {
     api.get('/point').then(res => {
       const { data } = res;
+      if(!data) return;
       setPoints(data);
     });
-  })
+  },[]);
   return ( Object.keys(points).length === 0 ? null : (
     <div>
     { 

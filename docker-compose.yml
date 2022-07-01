@@ -7,7 +7,7 @@ services:
     volumes:
       - './frontend:/frontend'
     ports:
-      - ${PORT_FRONTEND}:3000
+      - 3000:3000
     depends_on:
       backend:
         condition: service_healthy
@@ -20,7 +20,7 @@ services:
     build: ./backend
     container_name: app_backend
     ports:
-      - ${PORT}:3003
+      - 3003:3003
     platform: linux/x86_64
     command: npm run dev
     volumes:
@@ -31,14 +31,13 @@ services:
       mongo:
         condition: service_healthy
     environment:
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASS=${MYSQL_PASS}
-      - MYSQL_HOST=${MYSQL_HOST}
-      - MYSQL_NAME=${MYSQL_NAME}
-      - MYSQL_PORT=${MYSQL_PORT}
-      - MONGODB_NAME=${MONGODB_NAME}
-      - MONGODB_USER=${MONGODB_USER}
-      - MONGODB_PASSWORD=${MONGODB_PASSWORD}
+      - MYSQL_USER=root
+      - MYSQL_PASS=123456
+      - MYSQL_HOST=mysql
+      - MYSQL_NAME=trace
+      - MYSQL_PORT=3306
+      - MONGODB_NAME=TRACE_TRACK
+      - MONGODB_URI=mongodb://mongo:27017/trace
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3003"]
       timeout: 10s
@@ -61,9 +60,8 @@ services:
   mongo:
     image: mongo
     restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USER}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
+    ports:
+      - 27017:27017
     healthcheck:
       test: echo 'db.runCommand("ping").ok' | mongo mongo:27017/test --quiet
       timeout: 10s

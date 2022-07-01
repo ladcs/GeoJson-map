@@ -4,14 +4,17 @@ import MapContext from './mapContext';
 
 function Provider ({ children }) {
   const [itsPoints, setItsPoints] = useState('both');
-  const [logged, setLogged] = useState(false);
+  const [toMap, setToMap] = useState(true);
+  const [logged, setLogged] = useState(true);
   const [itsMap, setItsMap] = useState('map');
   const [points, setPoints] = useState({});
-  const [polygon, setPolygon] = useState([]);
+  const [polygon, setPolygon] = useState({});
   const [points2Polygon, setPoints2Polygon] = useState([]);
   const [multiPolygonPoint, setMultPolygonPoint] = useState([]);
   
   const contextValue = {
+    toMap,
+    setToMap,
     multiPolygonPoint,
     setMultPolygonPoint,
     points2Polygon,

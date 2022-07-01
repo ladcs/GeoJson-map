@@ -1,4 +1,4 @@
-// import api from "../services/api";
+import api from "../services/api";
 
 export function handleOnClickToAddPointOnPolygon(
   geoJson,
@@ -28,10 +28,9 @@ export function handleOnClickToAddMultiPolygon(
 export function handleOnClickAddPolygon(
   geoJson,
   setGeoJson,
-  polygon,
-  setPolygon,
-  multiPolygonPoint) {
-    if(multiPolygonPoint.length !== 0) {
+  multiPolygonPoint,
+  points2Polygon) {
+    if(multiPolygonPoint.length !== 0 || points2Polygon > 2) {
     const geometry = multiPolygonPoint.length > 1 ? {
       type: 'multiPolygon',
       coordinates: multiPolygonPoint,
@@ -43,30 +42,13 @@ export function handleOnClickAddPolygon(
     const { name, color } = geoJson;
         
     const feature = {
-      type: 'feature',
-      geometry,
-        properties: {
-          name,
-          color,
-        },
+      ...geometry,
+      name,
+      color,
     };
-        
-    const notExistFeatures = !polygon.features;
-    if (Object.keys(polygon).length === 0) {
-      setPolygon(feature);
-    } else if (notExistFeatures) {
-      const featuresCollection = {
-        type: 'featuresCollection',
-        features: [polygon, feature]
-      }
-      setPolygon(featuresCollection);
-    } else {
-      const featuresCollection = {
-        type: 'featuresCollection',
-        features: [...polygon.features, feature]
-      }
-      setPolygon(featuresCollection);
-    }
+
+    api.post('/polygon', feature);
+
     setGeoJson({
       name: '',
       coordenates: '',

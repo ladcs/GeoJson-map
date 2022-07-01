@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
-const connection = (mongoDatabaseURI = 'mongodb://localhost:/model_example') =>
-  mongoose.connect(mongoDatabaseURI);
+dotenv.config();
+
+const connection = (mongoDatabaseURI = "mongodb://localhost:27017/trace") => mongoose.connect(mongoDatabaseURI);
 
 export default connection;

@@ -1,35 +1,33 @@
-import { Schema } from 'mongoose';
-
-interface Properties {
+export interface IProperties {
   name: string,
   color: string
 }
 
-interface Geometry {
+export interface IGeometry {
   type: string,
-  coordinates: Array<Array<number>>
+  coordinates: Array<Array<number>> | Array<Array<Array<number>>>
 }
 
-interface Polygon {
+export interface IMultGeometry {
   type: string,
-  geometry: Geometry,
-  properties: Properties
+  coordinates: Array<Array<Array<number>>>
 }
 
-const geometrySchema = new Schema<Geometry>({
-  type: { type: String, required: true },
-  coordinates: { type: [[Number]], default: []}
-});
+export interface IPolygon {
+  _id?: string,
+  type: string,
+  geometry: IGeometry,
+  properties: IProperties
+}
 
-const propertiesSchema = new Schema<Properties> ({
-  name: { type: String, required: true },
-  color: { type: String, required: true }
-})
+export interface ICollectionPolygon {
+  type: string,
+  features: IPolygon[]
+}
 
-const polygonSchema = new Schema<Polygon>({
-  type: { type: String, required: true },
-  geometry: {type: geometrySchema, default: {} },
-  properties: { type: propertiesSchema, default: { } },
-});
-
-export default polygonSchema;
+export interface IPontsToPolygon {
+  color: string,
+  coordinates: Array<Array<number>> | Array<Array<Array<number>>>,
+  name: string,
+  type: string,
+}
