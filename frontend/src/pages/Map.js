@@ -2,15 +2,14 @@ import React, { useContext, useEffect} from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import { useNavigate } from 'react-router-dom';
 import CurrentLocation from '../components/Position';
-import MapCollectionPolygon from '../components/mapCollectionPolygon';
+import GetPointAndPolygon from '../components/GetPointAndPolygon';
 import NavMap from '../components/NavMap'
 import MapContext from '../context/mapContext';
-import MapCollectionPoints from '../components/mapCollectionPoints';
 import '../styles/map.css';
 
 function Map() {
   const position = ([0, 0]);
-  const { logged, itsPoints } = useContext(MapContext);
+  const { logged } = useContext(MapContext);
   const navigate = useNavigate();
   useEffect(() => {
     if (!logged) navigate('/');
@@ -21,18 +20,7 @@ function Map() {
     <NavMap />
     <MapContainer center={ position } zoom={ 13 } scrollWheelZoom={ true }>
       <CurrentLocation />
-      {
-      itsPoints === 'point' || itsPoints === 'both' &&
-        <div>
-          <MapCollectionPoints />
-        </div>
-      }
-      {
-        itsPoints === 'polygon' || itsPoints === 'both' &&
-        <div>
-          <MapCollectionPolygon />
-        </div>
-    }
+      <GetPointAndPolygon />
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
