@@ -39,7 +39,7 @@ describe('route Login', () => {
     (User.create as sinon.SinonStub).restore();
   })
 
-  it('Login sucess', async () => {
+  it('create user', async () => {
     chaiHttpResponse = await chai
       .request(app)
       .post(ROUTE)

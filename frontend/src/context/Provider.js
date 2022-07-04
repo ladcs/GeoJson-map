@@ -11,8 +11,11 @@ function Provider ({ children }) {
   const [polygon, setPolygon] = useState({});
   const [points2Polygon, setPoints2Polygon] = useState([]);
   const [multiPolygonPoint, setMultPolygonPoint] = useState([]);
+  const [position, setPosition] = useState([0, 0]);
   
   const contextValue = {
+    position,
+    setPosition,
     toMap,
     setToMap,
     multiPolygonPoint,

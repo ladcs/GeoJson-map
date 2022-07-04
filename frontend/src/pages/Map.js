@@ -1,7 +1,7 @@
 import React, { useContext, useEffect} from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import { useNavigate } from 'react-router-dom';
-import CurrentLocation from '../components/Position';
+import Location from '../components/Position';
 import GetPointAndPolygon from '../components/GetPointAndPolygon';
 import NavMap from '../components/NavMap'
 import MapContext from '../context/mapContext';
@@ -18,8 +18,8 @@ function Map() {
   return (
   <div className='flexbox'>
     <NavMap />
-    <MapContainer center={ position } zoom={ 13 } scrollWheelZoom={ true }>
-      <CurrentLocation />
+    <MapContainer className='test' center={ position } zoom={ 13 } scrollWheelZoom={ true }>
+      <Location />
       <GetPointAndPolygon />
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

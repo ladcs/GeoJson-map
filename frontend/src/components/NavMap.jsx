@@ -4,39 +4,40 @@ import MapContext from '../context/mapContext';
 import '../styles/default.css';
 import { handleClickItsPoints } from '../utils/navMap';
 
-function handleClickPosition(endpoint, navegate, setLogged) {
-  if (endpoint === '/register') {
-    setLogged(false);
-  }
+function handleClickPosition(endpoint, navegate) {
   navegate(endpoint);
 }
 const LabsOptions = () => {
 
   const navegate = useNavigate();
   
-  const { itsPoints, setItsPoints, setLogged } = useContext(MapContext);
+  const { itsPoints, setItsPoints } = useContext(MapContext);
   return (
-    <div className='centerOptions'>
+    <nav className='centerOptions'>
       <ul>
         <li>
           <button
-          onClick={() => handleClickPosition('/register', navegate, setLogged) }
+          onClick={() => handleClickPosition('/register', navegate) }
           >
+            <p>
             Regitrar novo Usuário
+            </p>
           </button>
         </li>
         <li>
           <button
           onClick={ ()=> handleClickPosition('/point', navegate) }
           >
-            Cadastrar Posições
+            <p>
+              Cadastrar Posições
+            </p>
           </button>
         </li>
         <li>
           <button
           onClick={() => handleClickPosition('/polygon', navegate) }
           >
-            Cadastrar Polígonos
+            <p>Cadastrar Polígonos</p>
           </button>
         </li>
         <li>
@@ -49,7 +50,7 @@ const LabsOptions = () => {
           </button>
         </li>
       </ul> 
-    </div>
+    </nav>
   );
 }
 

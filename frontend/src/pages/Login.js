@@ -3,6 +3,7 @@ import Input from '../components/Input';
 import MapContext from '../context/mapContext';
 import handleOnClickToLogin from '../utils/login';
 import { useNavigate } from 'react-router-dom';
+import '../styles/loginRegist.css'
 
 function Login() {
   const [user, setUser] = useState({
@@ -29,9 +30,10 @@ function Login() {
   const register = () => navigate('/register')
 
   return (
-    <main className="d-flex flex-column justify-content-center align-items-center">
-      <h2>Login</h2>
-      <form className="d-flex flex-column align-items-center login-form mt-4">
+    <div className="centered d-flex flex-column justify-content-center align-items-center">
+      <form onSubmit={ (e) => handleOnClickToLogin(e, setLogged, setUser, user, setUserError, setToMap, toMap) }
+      className="centered d-flex flex-column align-items-center login-form mt-4">
+        <h1>Login</h1>
         <Input
           label="Email"
           type="text"
@@ -39,7 +41,7 @@ function Login() {
           testId="email-input"
           id="email"
           onChange={ handleOnChange }
-          className="border-top border-right border-left p-2"
+          className="border-right border-left p-2"
         />
         <Input
           label="Senha"
@@ -48,27 +50,27 @@ function Login() {
           testId="password-input"
           id="password"
           onChange={ handleOnChange }
-          className="border-top border-right border-left p-2"
+          className="border-right border-left p-2"
         />
         <button
-          type="button"
+          type="submit"
           onClick={ (e) => handleOnClickToLogin(e, setLogged, setUser, user, setUserError, setToMap, toMap) }
           className="buttonLogin"
           value="Login"
-        >
-          Login
+          >
+          Entrar
         </button>
         <button
           type="button"
           onClick={ register }
-          className="buttonLogin"
+          className="buttonRegister"
           value="register"
-        >
+          >
           cadastrar-se
         </button>
       { userError && <p>User ou Password inválido!</p>}
       </form>
-    </main>
+    </div>
   );
 }
 

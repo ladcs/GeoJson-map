@@ -9,14 +9,11 @@ export default class PolygonModel {
 
   public async getPolygon() {
     const polygon = await this._model.find();
-    console.log(polygon);
     return polygon;
   }
 
   public async created(polygon: IPolygon) {
-    console.log(polygon);
     const created = await this._model.create(polygon);
-    console.log(created);
     return created;
   }
 }

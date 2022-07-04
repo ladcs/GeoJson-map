@@ -1,12 +1,9 @@
 const inPoint = {
-  type: "Feature",
-  properties: {
-      name: "Coors Field",
+  name: "Coors Field",
+  coordinates: [-104.99404, 39.75621],
+  _id: {
+    $oid: 'any_id',
   },
-  geometry: {
-      type: "Point",
-      coordinates: [-104.99404, 39.75621]
-  }
 };
 
 const _id = { $oid: 'anyId' };
@@ -16,14 +13,21 @@ const obj = { properties: {
   name: 'sweet home'
 } }
 
-const inPointReturn = {
-  ...inPoint,
-  _id: {
-    $oid: 'anyId',
-  }
+const espPoint = {
+  type: "Feature",
+  properties: {
+    name: "Coors Field",
+  },
+  geometry: {
+      type: "Point",
+      coordinates: [-104.99404, 39.75621]
+    }
 }
 
 const inPointCollection = {
+  _id: {
+    $oid: 'any_id',
+  },
   type: "FeatureCollection",
   features: [
     {
@@ -56,4 +60,4 @@ const inPointCollectionReturn = {
   }
 }
 
-export { inPoint, inPointCollection, inPointReturn, inPointCollectionReturn, _id, obj }
+export { inPoint, inPointCollection, espPoint, inPointCollectionReturn, _id, obj }

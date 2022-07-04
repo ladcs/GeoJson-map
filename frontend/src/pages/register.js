@@ -3,6 +3,7 @@ import Input from '../components/Input';
 import MapContext from '../context/mapContext';
 import { useNavigate } from 'react-router-dom';
 import handleOnClickToRegister from '../utils/register';
+import '../styles/loginRegist.css'
 
 function Register() {
   const [user, setUser] = useState({
@@ -25,18 +26,18 @@ function Register() {
       [id]: value,
     });
   };
-
+  console.log(logged);
   return (
-    <main className="d-flex flex-column justify-content-center align-items-center">
-      <h2>Cadastro</h2>
-      <form className="d-flex flex-column align-items-center login-form mt-4">
+    <main className="centered d-flex flex-column justify-content-center align-items-center">
+      <form className="centered d-flex flex-column align-items-center login-form mt-4">
+        <h1>Cadastro</h1>
         <Input
           label="Email"
           type="text"
           value={ email }
           id="email"
           onChange={ handleOnChange }
-          className="border-top border-right border-left p-2"
+          className="border-right border-left p-2"
         />
           <Input
             label="Nome do Usuário"
@@ -44,7 +45,7 @@ function Register() {
             value={ userName }
             id="userName"
             onChange={ handleOnChange }
-            className="border-top border-right border-left p-2"
+            className="border-right border-left p-2"
           />
         <Input
           label="Senha"
@@ -52,7 +53,7 @@ function Register() {
           value={ password }
           id="password"
           onChange={ handleOnChange }
-          className="border-top border-right border-left p-2"
+          className="border-right border-left p-2"
         />
         <button
           type="button"

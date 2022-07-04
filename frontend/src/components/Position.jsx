@@ -1,7 +1,7 @@
 import { useMap } from 'react-leaflet';
 import { useEffect, useState } from 'react';
 
-function CurrentLocation() {
+function Location() {
   const [position, setPosition] = useState(null);
 
   const map = useMap();
@@ -16,4 +16,4 @@ function CurrentLocation() {
   return position === null && null;
 }
 
-export default CurrentLocation;
+export default Location;
