@@ -39,7 +39,7 @@ function MapCollectionPoints() {
               <button onClick={ () => setEdit(!edit) } >
                 <BiEditAlt/>
               </button>
-              { !edit && <UpPoint
+              { edit && <UpPoint
               coordinates={ points.geometry.coordinates }
               id={ points._id }
               /> }
