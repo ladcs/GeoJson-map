@@ -1,58 +1,72 @@
 import api from "../services/api";
 
 export function handleOnClickToAddPointOnPolygon(
-  geoJson,
-  setGeoJson,
+  coordinates,
   points2Polygon,
   setPoints2Polygon) {
-  const { coordenates } = geoJson;
-  if (coordenates === '') return;
-  const coordinates = coordenates.split(',').map(c => parseFloat(c));
-  setPoints2Polygon([...points2Polygon, coordinates]);
-  setGeoJson({ ...geoJson, coordenates: '' });
+  setPoints2Polygon(...points2Polygon, [coordinates[0], coordinates[1]]);
+  setPoints2Polygon([]);
 }
 
 export function handleOnClickToAddMultiPolygon(
-  geoJson,
-  setGeoJson,
   points2Polygon,
   setPoints2Polygon,
   multiPolygonPoint,
-  setMultPolygonPoint) {
+  setMultPolygonPoint,
+  setCoordinates) {
     if (points2Polygon < 3) return;
     setMultPolygonPoint([...multiPolygonPoint, [...points2Polygon]]);
+    console.log(multiPolygonPoint);
     setPoints2Polygon([]);
-    setGeoJson({ ...geoJson, coordenates: '' });
+    setCoordinates([]);
   }
 
 export function handleOnClickAddPolygon(
-  geoJson,
-  setGeoJson,
+  polygons,
+  setPolygons,
+  setCoordinates,
   multiPolygonPoint,
-  points2Polygon) {
-    if(multiPolygonPoint.length !== 0 || points2Polygon > 2) {
+  setMultPolygonPoint,
+  setPolygon
+  ) {
+    if(multiPolygonPoint.length !== 0) {
     const geometry = multiPolygonPoint.length > 1 ? {
       type: 'multiPolygon',
       coordinates: multiPolygonPoint,
     } : {
       type: 'polygon',
-        coordinates: [...multiPolygonPoint],
-      };
-        
-    const { name, color } = geoJson;
-        
+      coordinates: [...multiPolygonPoint],
+    };
+      
+    const { name, color } = polygons;
+      
+    if (name === '' || color === '') {
+      setCoordinates([]);
+      setMultPolygonPoint([]);
+      return;
+    }
+
     const feature = {
       ...geometry,
       name,
       color,
     };
 
-    api.post('/polygon', feature);
+    console.log(feature);
 
-    setGeoJson({
+    api.post('/polygon', feature).then(() => {
+      api.get('/polygon').then((res => {
+        const { data } = res;
+        if(!data) return;
+        setPolygon(data);
+      }))
+    });
+
+    setPolygons({
       name: '',
-      coordenates: '',
       color: ''
     });
+    setCoordinates([]);
+    setMultPolygonPoint([]);
   }
 }

@@ -10,7 +10,7 @@ function handleClickPosition(endpoint, navegate) {
 
 const LabsOptions = () => {
 
-  const { newPoint, setNewPoint, newPolygon, setNewPolygon } = useContext(MapContext);
+  const { newPoint, setNewPoint, newPolygon, setNewPolygon, setCoordinates } = useContext(MapContext);
 
   const navegate = useNavigate();
   
@@ -30,8 +30,9 @@ const LabsOptions = () => {
         <li>
           <button
           onClick={ ()=> {
-            setNewPoint(!newPoint)
-            setNewPolygon(false)
+            setNewPoint(!newPoint);
+            setNewPolygon(false);
+            setCoordinates([]);
           } }
           >
             <p>
@@ -42,8 +43,9 @@ const LabsOptions = () => {
         <li>
           <button
           onClick={ ()=> {
-            setNewPolygon(!newPolygon)
-            setNewPoint(false)
+            setNewPolygon(!newPolygon);
+            setNewPoint(false);
+            setCoordinates([]);
           } }
           >
             <p>Cadastrar Polígonos</p>

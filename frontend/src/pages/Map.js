@@ -7,6 +7,7 @@ import NavMap from '../components/NavMap'
 import MapContext from '../context/mapContext';
 import '../styles/map.css';
 import NewPoint from '../components/NewPoint';
+import NewPolygon from '../components/newPolygon';
 
 function Map() {
   const { logged, newPoint, newPolygon, position } = useContext(MapContext);
@@ -19,7 +20,7 @@ function Map() {
   <div className='flexbox'>
     <NavMap />
     { newPoint && <NewPoint /> }
-    { newPolygon && <div>Test para polígono</div> }
+    { newPolygon && <NewPolygon />}
     <MapContainer className='test' center={ !position ? [0,0]: position } zoom={ 13 } scrollWheelZoom={ true }>
       <Location />
       <GetPointAndPolygon />
