@@ -9,6 +9,7 @@ const app = Router();
 
 app.get(ROUTE, controller.getPoints);
 app.post(ROUTE, controller.insertPoint);
-app.delete(`/point/:id`, controller.delete);
+app.patch('/point/:id', controller.updated);
+app.delete('/point/:id', controller.delete);
 
 export default app;

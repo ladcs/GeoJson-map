@@ -20,5 +20,10 @@ export default class PolointsModel {
     const created = await this._model.create(point);
     return created;
   }
+
+  public async update(_id: string, upPoint: IPoint) {
+    const updated = await this._model.findByIdAndUpdate(_id, upPoint);
+    return updated;
+  }
 }
 

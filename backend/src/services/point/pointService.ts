@@ -18,6 +18,12 @@ export default class PointService {
     return inserted;
   }
 
+  public async updated(_id: string, featurePoint: IGeometryAndName) {
+    const point = this._auxToPoint.coordinates(featurePoint);
+    const updated = await this._model.update(_id, point);
+    return updated;
+  }
+
   public async delete(id: string) {
     await this._model.delete(id);
     return { deleted: 'ok'};

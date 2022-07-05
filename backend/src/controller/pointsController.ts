@@ -28,6 +28,17 @@ export default class PointController {
     }
   }
 
+  updated = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      const update = await this._service.updated(id, req.body);
+      res.status(StatusCodes.OK).json(update);
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
+
   delete = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const _id = req.params.id;
