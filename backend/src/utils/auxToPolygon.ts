@@ -3,7 +3,8 @@ import { IPolygon, IPontsToPolygon } from '../schema/IGeoJsonPolygon';
 export class AuxToPolygon {
   public collectionPolygon(points: IPolygon[]) {
     const features = points.map(p => {
-      const { type, geometry, properties } = p;
+      const { type, geometry, properties: propOut, _id } = p;
+      const properties = { ...propOut, _id };
       return { type, geometry, properties };
     });
     const collectionPoints = {

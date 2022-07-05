@@ -14,14 +14,19 @@ export default class PolygonService {
       const collectionPolygon = this._auxToPolygon.collectionPolygon(polygons);
       return collectionPolygon;
     } if(polygons.length === 0) throw new NoContent('no polygon');
-    const { type, geometry, properties } = polygons[0];
-    return { type, geometry, properties };
+    const { type, geometry, properties, _id } = polygons[0];
+    return { type, geometry, properties, _id };
   }
 
   public async created(pointsToPolygon: IPontsToPolygon) {
     const polygon = this._auxToPolygon.polygonGeoJson(pointsToPolygon);
     const created = this._model.created(polygon);
     return created;
+  }
+
+  public async deleted(_id: string) {
+    await this._model.delete(_id);
+    return { deleted: 'ok'};
   }
 }
 

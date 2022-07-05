@@ -28,4 +28,15 @@ export default class PolygonController {
       next(err);
     }
   }
+
+  delete = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      const deleted = await this._service.deleted(id);
+      res.status(StatusCodes.NO_CONTENT).json(deleted);
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
 }

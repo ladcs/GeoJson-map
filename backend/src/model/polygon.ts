@@ -16,5 +16,9 @@ export default class PolygonModel {
     const created = await this._model.create(polygon);
     return created;
   }
+
+  public async delete(_id: string) {
+    await this._model.findByIdAndDelete(_id);
+  }
 }
 
