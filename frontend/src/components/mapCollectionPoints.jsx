@@ -10,6 +10,8 @@ function MapCollectionPoints() {
       const { data } = res;
       if(!data) return;
       setPoints(data);
+    }).catch(() => {
+      console.log('sem pontos');
     });
   },[]);
   return ( Object.keys(points).length === 0 ? null : (

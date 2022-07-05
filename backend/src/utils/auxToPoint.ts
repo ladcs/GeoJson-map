@@ -1,39 +1,28 @@
-import { IPoints } from '../schema/Point';
+import { IGeometryAndName, IPoint } from '../schema/IGeoJsonPoint';
 
 export class AuxToPoint {
 
-  public coordinates(coordinates: number[]) {
-    const longitude = coordinates[0];
-    const latitude = coordinates[1];
-    return { longitude, latitude };
+  public coordinates(coordinatesToPoint: IGeometryAndName) {
+    const { name, coordinates } = coordinatesToPoint;
+    const geometry = {
+      type: 'point',
+      coordinates,
+    }
+    const properties = {
+      name,
+    }
+    return { type: 'feature', geometry, properties };
   }
 
-  public collectionPoints(points: IPoints[]) {
-    const features = points.map(p => ({
-      type: "feature",
-      properties: { name: p.name },
-      geometry: {
-        type: 'point',
-        coordinates:[p.longitude, p.latitude],
-      },
-    }));
+  public collectionPoints(points: IPoint[]) {
+    const features = points.map(p => {
+      const { type, properties, geometry } = p;
+      return { type, properties, geometry };
+    });
     const collectionPoints = {
       type: "featureCollection",
       features,
     };
     return collectionPoints;
-  }
-
-  public point(pointToTrat: IPoints[]) {
-    const { name, longitude, latitude } = pointToTrat[0];
-    const point = {
-      type: "feature",
-      properties: { name },
-      geometry: {
-        type: 'point',
-        coordinates:[longitude, latitude],
-      }
-    }
-    return point;
   }
 }

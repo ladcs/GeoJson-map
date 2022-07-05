@@ -1,13 +1,16 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MapContext from '../context/mapContext';
-import '../styles/default.css';
 import { handleClickItsPoints } from '../utils/navMap';
+import '../styles/default.css';
 
 function handleClickPosition(endpoint, navegate) {
   navegate(endpoint);
 }
+
 const LabsOptions = () => {
+
+  const { newPoint, setNewPoint, newPolygon, setNewPolygon } = useContext(MapContext);
 
   const navegate = useNavigate();
   
@@ -26,7 +29,10 @@ const LabsOptions = () => {
         </li>
         <li>
           <button
-          onClick={ ()=> handleClickPosition('/point', navegate) }
+          onClick={ ()=> {
+            setNewPoint(!newPoint)
+            setNewPolygon(false)
+          } }
           >
             <p>
               Cadastrar Posições
@@ -35,7 +41,10 @@ const LabsOptions = () => {
         </li>
         <li>
           <button
-          onClick={() => handleClickPosition('/polygon', navegate) }
+          onClick={ ()=> {
+            setNewPolygon(!newPolygon)
+            setNewPoint(false)
+          } }
           >
             <p>Cadastrar Polígonos</p>
           </button>

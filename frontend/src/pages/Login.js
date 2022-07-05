@@ -38,7 +38,6 @@ function Login() {
           label="Email"
           type="text"
           value={ email }
-          testId="email-input"
           id="email"
           onChange={ handleOnChange }
           className="border-right border-left p-2"
@@ -47,7 +46,6 @@ function Login() {
           label="Senha"
           type="password"
           value={ password }
-          testId="password-input"
           id="password"
           onChange={ handleOnChange }
           className="border-right border-left p-2"

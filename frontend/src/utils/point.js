@@ -1,12 +1,17 @@
 import api from "../services/api";
 
-export function handleOnClickToAddPoint(geoJson, setGeoJson/*, points, setPoints*/) {
-  const { coordenates, name } = geoJson;
-  if (coordenates === '' || name === '') return;
+export function handleOnClickToAddPoint(point, setPoint, setCoordinates, setPoints) {
+  const { coordinates, name } = point;
+  if (coordinates === [] || name === '') return;
 
-  const coordinates = coordenates.split(',').map(c => parseFloat(c));
+  api.post('/point', { name, coordinates }).then(() =>{
+    api.get('/point').then(res => {
+    const { data } = res;
+    if(!data) return;
+      setPoints(data);
+    });
+  });
 
-  api.post('/point', { name, coordinates });
-
-  setGeoJson({ name: '', coordenates: '' });
+  setPoint({ name: '' });
+  setCoordinates([]);
 }

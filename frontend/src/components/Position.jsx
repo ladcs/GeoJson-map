@@ -1,8 +1,10 @@
 import { useMap } from 'react-leaflet';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
+import MapContext from '../context/mapContext';
 
 function Location() {
-  const [position, setPosition] = useState(null);
+  const { position, setPosition } = useContext(MapContext);
+  const { setCoordinates, newPoint, newPolygon } = useContext(MapContext)
 
   const map = useMap();
 
@@ -11,7 +13,11 @@ function Location() {
       setPosition(e.latlng);
       map.flyTo(e.latlng, map.getZoom());
     });
-  }, [map]);
+    if (newPoint || newPolygon) {
+      map.on('click', (e)=> setCoordinates(
+        [e.latlng.lat, e.latlng.lng]));
+    }
+  }, [map, newPoint, newPolygon]);
 
   return position === null && null;
 }

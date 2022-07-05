@@ -4,10 +4,10 @@ import { IPoint } from '../schema/IGeoJsonPoint';
 
 import pointSchema from '../schema/GeoJsonPoint';
 
-export default class PolygonModel {
+export default class PolointsModel {
   constructor(private _model = model('point', pointSchema)) { }
 
-  public async getPolygon() {
+  public async getPoints() {
     const point = await this._model.find();
     return point;
   }

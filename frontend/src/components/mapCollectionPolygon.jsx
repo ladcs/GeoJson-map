@@ -10,6 +10,8 @@ function MapCollectionPolygon() {
       const { data } = res;
       if(!data) return;
       setPolygon(data);
+    }).catch(() => {
+      console.log('sem polígonos');
     });
   }, []);
   

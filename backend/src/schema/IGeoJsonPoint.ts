@@ -2,6 +2,11 @@ export interface IProperties {
   name: string,
 }
 
+export interface IGeometryAndName {
+  name: string,
+  coordinates: number[],
+}
+
 export interface IGeometry {
   type: string,
   coordinates: Array<number>

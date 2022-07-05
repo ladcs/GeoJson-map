@@ -6,10 +6,10 @@ import GetPointAndPolygon from '../components/GetPointAndPolygon';
 import NavMap from '../components/NavMap'
 import MapContext from '../context/mapContext';
 import '../styles/map.css';
+import NewPoint from '../components/NewPoint';
 
 function Map() {
-  const position = ([0, 0]);
-  const { logged } = useContext(MapContext);
+  const { logged, newPoint, newPolygon, position } = useContext(MapContext);
   const navigate = useNavigate();
   useEffect(() => {
     if (!logged) navigate('/');
@@ -18,7 +18,9 @@ function Map() {
   return (
   <div className='flexbox'>
     <NavMap />
-    <MapContainer className='test' center={ position } zoom={ 13 } scrollWheelZoom={ true }>
+    { newPoint && <NewPoint /> }
+    { newPolygon && <div>Test para polígono</div> }
+    <MapContainer className='test' center={ !position ? [0,0]: position } zoom={ 13 } scrollWheelZoom={ true }>
       <Location />
       <GetPointAndPolygon />
       <TileLayer
