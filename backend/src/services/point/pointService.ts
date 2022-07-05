@@ -18,10 +18,15 @@ export default class PointService {
     return inserted;
   }
 
+  public async delete(id: string) {
+    await this._model.delete(id);
+    return { deleted: 'ok'};
+  }
+
   public async getPoints() {
     const points = await this._model.getPoints()
     if(points.length > 1) {
-      const collectionPoints = this._auxToPoint.collectionPoints(points)
+      const collectionPoints = this._auxToPoint.collectionPoints(points);
       return collectionPoints;
     }
     if(points.length === 1) {

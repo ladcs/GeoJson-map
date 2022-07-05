@@ -16,7 +16,8 @@ export class AuxToPoint {
 
   public collectionPoints(points: IPoint[]) {
     const features = points.map(p => {
-      const { type, properties, geometry } = p;
+      const { type, properties: propOut, geometry, _id } = p;
+      const properties = { ...propOut, _id};
       return { type, properties, geometry };
     });
     const collectionPoints = {

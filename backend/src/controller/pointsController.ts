@@ -27,4 +27,15 @@ export default class PointController {
       next(err);
     }
   }
+
+  delete = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const _id = req.params.id;
+      const deleted = await this._service.delete(_id);
+      res.status(StatusCodes.NO_CONTENT).json(deleted);
+    } catch (err) {
+      console.log(err);
+      next(err);
+    }
+  }
 }

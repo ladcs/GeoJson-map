@@ -12,6 +12,10 @@ export default class PolointsModel {
     return point;
   }
 
+  public async delete(_id: string) {
+    await this._model.findByIdAndDelete({ _id });
+  }
+
   public async created(point: IPoint) {
     const created = await this._model.create(point);
     return created;
