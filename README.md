@@ -17,7 +17,7 @@ Em cima do mapa há um nav com as opções, registrar usuário, que envia para a
 
 Ao clicar em cadastrar posições, aparecera logo em baixo um input para escrever o nome do lugar, e ao dar um simples click no mapa irá preencer a latitude e a longitute. Por fim apertando no botão nova posição, irá adicionar o ponto no map, como popup, e no banco de dados, desde que haja um nome.
 
-Ao clickar no cadastrar polígonos aparecerá dois inputs, um para o nome e outro para cor. Clicando no map irá aparecer o primeiro ponto do polígono na coordenadas, apertando em três pontos do mapa, estará apto a adicionar um polígono, para isso deve primeiro pressionar o botão adicionar coordenadas ao polígono, e em seguida novo polígono.
+Ao clicar no cadastrar polígonos aparecerá dois inputs, um para o nome e outro para cor. Clicando no map irá aparecer o primeiro ponto do polígono na coordenadas, apertando em três pontos do mapa, estará apto a adicionar um polígono, para isso deve primeiro pressionar o botão adicionar coordenadas ao polígono, e em seguida novo polígono.
 
 Para adicionar multipolygon deve adicionar pelo menos 3 pontos, seguindo o passo anterior, e apertar em Adicionar Coordenadas ao Polígono, então clicando em mais pontos e novamente adicionar Coordenadas ao Polígono, repetindo esse processo até finalizar o multipolygon, para então adicionar ao banco e ao mapa, deve apertar no botão Novo Polígono.
 
